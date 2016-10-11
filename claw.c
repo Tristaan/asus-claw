@@ -13,8 +13,8 @@ libusb_device_handle* findClaw(struct libusb_device  **list){
     struct libusb_device_descriptor desc;
     int r = libusb_get_device_descriptor(dev, &desc);
     if (r < 0) {
-        fprintf(stderr, "failed to get device descriptor");
-        return NULL;
+      fprintf(stderr, "failed to get device descriptor");
+      return NULL;
     }
 
     if(desc.idVendor==VENDOR && desc.idProduct==PRODUCT){
@@ -37,7 +37,7 @@ void transferComplete(struct libusb_transfer *transfer){
       }
       fprintf(stdout,"\n");
       fflush(stdout);
-    break;
+      break;
     case LIBUSB_TRANSFER_CANCELLED:
       fprintf(stderr,"Canceled");
       break;
@@ -62,7 +62,7 @@ void transferComplete(struct libusb_transfer *transfer){
 
 int main (){
   struct libusb_context *ctx;
-	struct libusb_device **list;
+  struct libusb_device **list;
 
   libusb_init(&ctx);
   if(libusb_get_device_list(ctx,&list)<0){
@@ -97,13 +97,13 @@ int main (){
       libusb_free_transfer(transfer);
     }
     if (libusb_handle_events_completed(ctx, NULL) < 0){   // negative values are errors
-     fprintf(stderr,"handle events error"); 
+      fprintf(stderr,"handle events error");
       break;
     }
   }
   libusb_free_device_list(list,1);
   libusb_exit(ctx);
   printf("completed!");
-  
+
   return 0;
 }
