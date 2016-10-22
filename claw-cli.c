@@ -3,11 +3,11 @@
 
 const char *help="usage: claw-cli [options] \n\
   -p<x>   Profile DPI Settings. Note: only use values incremented by 50\n\
-          from 0-5000.Program will round down any other values.\n\
+          from 50-5000.Program will round down any other values.\n\
   -ps     Same as above, Setting for Sniper Mode.\n\
   -ls     Scrollwheel LED Setting. 0=disabled 1=enabled\n\
   -ll     Logo LED Setting. 0=disabled 1=enabled\n\
-  -o      Polling rate settings. 0=200Hz 1=500Hz 2=1000Hz\n\
+  -o      Polling rate settings. 0=125Hz 1=500Hz 2=1000Hz\n\
   -h      Display this help message\n";
 int main(int argc,char *argv[]){
   unsigned char p[8]={20,30,40,50,10,0,0,0};
