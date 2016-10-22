@@ -14,6 +14,13 @@ This is a program that turns settings into bytes understandeable by the driver.
       -o      Polling rate settings. 0=125Hz 1=500Hz 2=1000Hz
       -h      Display this help message
 
+## Installation
+    git clone https://github.com/Tristaan/asus-claw.git
+    cd asus-claw
+    make
+
+To make DPI buttons work ./claw must be running.
+
 ####To-Do
 There is some work left to do:
 * Make the event handling better (??)
