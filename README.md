@@ -6,13 +6,17 @@ Please note that this is still in development.
 This is a program that turns settings into bytes understandeable by the driver.
 
 usage: claw-cli [options]\n
-  -p<x>   Profile DPI Settings. Note: only use values incremented by 50\n
-          from 50-5000.Program will round down any other values.\n
-  -ps     Same as above, Setting for Sniper Mode.\n
-  -ls     Scrollwheel LED Setting. 0=disabled 1=enabled\n
-  -ll     Logo LED Setting. 0=disabled 1=enabled\n
-  -o      Polling rate settings. 0=125Hz 1=500Hz 2=1000Hz\n
-  -h      Display this help message\n
+  -p<x>   Profile DPI Settings. Note: only use values incremented by 50
+          from 50-5000.Program will round down any other values.
+          
+  -ps     Same as above, Setting for Sniper Mode.
+  
+  -ls     Scrollwheel LED Setting. 0=disabled 1=enabled
+  
+  -ll     Logo LED Setting. 0=disabled 1=enabled
+  
+  -o      Polling rate settings. 0=125Hz 1=500Hz 2=1000Hz
+  -h      Display this help message
 
 ####To-Do
 There is some work left to do:
