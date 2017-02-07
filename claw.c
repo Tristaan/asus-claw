@@ -19,9 +19,12 @@
 #include <stdlib.h>
 #include <libusb-1.0/libusb.h>
 uint8_t DATA_SIZE=8;
-uint16_t VENDOR=0x195d;
-uint16_t CLAW=0x1016;
-uint16_t SAGITTA=0x1017;
+#define DEVICE_DESC(vendor, product) ((((uint32_t)(vendor))<<16) | (product))
+uint32_t supported_mice[] = {
+	DEVICE_DESC(0x195d, 0x1016), // ASUS CLAW
+	DEVICE_DESC(0x195d, 0x1017), // SAGITTA
+	DEVICE_DESC(0x12cf, 0x700b), // COUGAR 700M
+};
 
 void transferComplete(struct libusb_transfer *transfer);
 struct libusb_device_handle *getHandle(struct libusb_context *ctx,
@@ -81,6 +84,12 @@ int main (int argc, char *argv[]){
 
 	return 0;
 }
+uint16_t vendor_of(uint32_t usb_device_desc) {
+	return (uint16_t)(usb_device_desc >> 16);
+}
+uint16_t product_of(uint32_t usb_device_desc) {
+	return (uint16_t)usb_device_desc;
+}
 
 struct libusb_device_handle *getHandle(struct libusb_context *ctx,
 				       struct libusb_device **list){
@@ -93,12 +102,13 @@ struct libusb_device_handle *getHandle(struct libusb_context *ctx,
 			fprintf(stderr, "getHandle() descriptor");
 			return NULL;
 		}
-		if(desc.idVendor==VENDOR){
-			if(desc.idProduct==CLAW || desc.idProduct==SAGITTA){
+		int supported_count = sizeof(supported_mice)/sizeof(supported_mice[0]);
+		for (int j = 0; j < supported_count; j++) {
+			if (desc.idVendor == vendor_of(supported_mice[j])
+			   && desc.idProduct == product_of(supported_mice[j]))
 				return libusb_open_device_with_vid_pid(ctx,
-								       VENDOR,
+								       desc.idVendor,
 								       desc.idProduct);
-			}
 		}
 	}
 	return NULL;
