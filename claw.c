@@ -66,8 +66,10 @@ int main (int argc, char *argv[]){
 
 
 	while (!completed) {
-		if(libusb_submit_transfer(transfer)<0){
-			fprintf(stderr,"Error while submitting transfer.");
+		const char res = libusb_submit_transfer(transfer);
+		if(res<0){
+			fprintf(stderr,"Error while submitting transfer: ");
+			fprintf(stderr, res);
 			libusb_free_transfer(transfer);
 			completed=1;
 		}

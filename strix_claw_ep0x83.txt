@@ -1,0 +1,35 @@
+07 41 01 08 04 00 00 00 - SNIPER MODE (no release action?!)
+
+07 41 01 01 03 00 00 00 - UP PRESS
+07 42 01 06 00 00 00 00 - UP RELEASE
+
+07 41 01 02 02 00 00 00 - DOWN PRESS
+07 42 01 07 00 00 00 00 - DOWN RELEASE
+
+07 41 01 02 01 00 00 00 - DOWN PRESS
+07 42 01 07 00 00 00 00 - DOWN RELEASE
+
+07 41 01 02 00 00 00 00 - DOWN PRESS
+07 42 01 07 00 00 00 00 - DOWN RELEASE
+
+
+07 41 01 02 00 00 00 00 - DOWN PRESS
+   --    -- --
+  P/R   /     \
+       /       \
+Button ID       \
+               PROFILE #
+
+There are 4 possible profiles, each set up in the configuration utility
+
+The second byte is an indicator if a press or release is happening.
+The fourth byte is the action ID (which action is currently happening)
+The fifth byte is the profile number.
+All other bytes are constants.
+
+07 41 01 08 04 00 00 00 - SNIPER MODE
+
+The sniper button is similar to the other 2 DPI buttons, but it actually selects the FIFTH profile and there is no release action happening (?!).
+*? The release action happens on EP0x81. There are multiple packets being sent on release (this is really weird behaviour).
+** Check report descriptor & check if possible fixes are possible.
+
